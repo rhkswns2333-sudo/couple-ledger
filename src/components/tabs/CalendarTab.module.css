@@ -1,0 +1,14 @@
+.nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.navBtn { background: var(--pink-pale); border: none; border-radius: 10px; width: 32px; height: 32px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+.navBtn:hover { background: var(--pink-light); }
+.monthLabel { font-size: 14px; font-weight: 700; color: var(--brown); }
+.grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.dayHeader { text-align: center; font-size: 11px; font-weight: 600; color: var(--text-light); padding: 4px 0; }
+.sun { color: #e07070; }
+.sat { color: #7090e0; }
+.day { aspect-ratio: 0.75; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 6px 2px 4px; border-radius: 12px; border: 1.5px solid transparent; background: none; cursor: pointer; font-size: 13px; font-family: 'Noto Sans KR', sans-serif; transition: all 0.15s; }
+.day:hover { background: var(--pink-pale); }
+.today { background: var(--pink-pale); border-color: var(--pink); }
+.selected { background: var(--pink-light); border-color: var(--pink); }
+.expense { font-size: 9px; color: #e07070; font-weight: 600; margin-top: 2px; }
+.detailTitle { font-size: 14px; font-weight: 700; color: var(--brown); margin-bottom: 12px; }
