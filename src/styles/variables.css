@@ -1,0 +1,19 @@
+:root {
+  --cream: #fdf6ec;
+  --pink: #ffb8c6;
+  --pink-light: #ffe0e8;
+  --pink-pale: #fff5f7;
+  --lavender: #d4b8e0;
+  --lavender-light: #ede0f5;
+  --mint: #b8e0d4;
+  --beige: #f5ead8;
+  --brown: #8b6f5e;
+  --text: #5a3e3e;
+  --text-light: #a07070;
+  --white: #ffffff;
+  --shadow: 0 4px 20px rgba(180, 100, 120, 0.12);
+  --shadow-hover: 0 8px 30px rgba(180, 100, 120, 0.2);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+}
