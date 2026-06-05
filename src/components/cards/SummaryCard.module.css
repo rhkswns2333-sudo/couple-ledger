@@ -1,0 +1,9 @@
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.item { background: var(--pink-pale); border-radius: 16px; padding: 14px 10px; text-align: center; }
+.income { background: #f0fdf8; }
+.expense { background: #fff5f7; }
+.balance { background: var(--lavender-light); }
+.label { font-size: 11px; color: var(--text-light); margin-bottom: 6px; }
+.amount { font-size: 16px; font-weight: 700; color: var(--brown); }
+.incomeColor { color: #3cb371; }
+.expenseColor { color: #e07070; }

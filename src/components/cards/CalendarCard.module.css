@@ -1,0 +1,13 @@
+.grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.dayHeader { text-align: center; font-size: 11px; font-weight: 600; color: var(--text-light); padding: 4px 0; }
+.sun { color: #e07070; }
+.sat { color: #7090e0; }
+.day { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; border: none; background: none; cursor: pointer; font-size: 13px; position: relative; font-family: 'Noto Sans KR', sans-serif; transition: background 0.15s; }
+.day:hover { background: var(--pink-pale); }
+.today { background: var(--pink); color: white; font-weight: 700; }
+.selected { background: var(--lavender); color: white; font-weight: 700; }
+.dot { position: absolute; bottom: 3px; width: 4px; height: 4px; border-radius: 50%; background: var(--pink); }
+.today .dot, .selected .dot { background: white; }
+.detail { background: var(--pink-pale); border-radius: 16px; padding: 14px; margin-top: 12px; }
+.detailTitle { font-size: 13px; font-weight: 700; color: var(--brown); margin-bottom: 10px; }
+.empty { font-size: 13px; color: var(--text-light); text-align: center; padding: 8px; }
