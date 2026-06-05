@@ -1,0 +1,14 @@
+.donutWrap { position: relative; width: 150px; height: 150px; margin: 0 auto 16px; }
+.donutCenter { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.donutAmount { font-size: 16px; font-weight: 700; color: var(--brown); }
+.donutLabel { font-size: 11px; color: var(--text-light); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; }
+.legendItem { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.legendDot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.barRow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.barLabel { width: 40px; font-size: 12px; }
+.barBg { flex: 1; height: 12px; background: var(--pink-pale); border-radius: 999px; overflow: hidden; }
+.barFill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--pink), var(--lavender)); transition: width 0.8s ease; }
+.barPink { background: linear-gradient(90deg, #ffb8c6, #ff8fab); }
+.barMint { background: linear-gradient(90deg, #b8e0d4, #7dcfb6); }
+.barAmount { font-size: 12px; font-weight: 600; min-width: 70px; text-align: right; }
