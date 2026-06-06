@@ -4,24 +4,21 @@ import { parseWithGemini } from '../../utils/gemini'
 import { getTodayString, formatAmount } from '../../utils/formatters'
 import styles from './modals.module.css'
 
-const API_KEY_STORAGE = 'gemini_api_key'
+const GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY
 
 export default function NLInputModal({ onSave, onClose, onManual }) {
   const [step, setStep] = useState('input') // 'input' | 'loading' | 'confirm'
   const [text, setText] = useState('')
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem(API_KEY_STORAGE) || '')
   const [writer, setWriter] = useState(WRITERS[0].key)
   const [parsed, setParsed] = useState(null)
   const [error, setError] = useState('')
 
   async function handleParse() {
     if (!text.trim()) return
-    if (!apiKey.trim()) { setError('Gemini API 키를 입력해주세요'); return }
-    localStorage.setItem(API_KEY_STORAGE, apiKey.trim())
     setError('')
     setStep('loading')
     try {
-      const result = await parseWithGemini(text, apiKey.trim(), getTodayString())
+      const result = await parseWithGemini(text, GEMINI_KEY, getTodayString())
       setParsed({ ...result, writer })
       setStep('confirm')
     } catch (e) {
@@ -52,15 +49,6 @@ export default function NLInputModal({ onSave, onClose, onManual }) {
               onChange={e => setText(e.target.value)}
               rows={3}
               autoFocus
-            />
-
-            <label className={styles.label}>Gemini API 키</label>
-            <input
-              type="password"
-              className={styles.apiKeyInput}
-              placeholder="AIza..."
-              value={apiKey}
-              onChange={e => setApiKey(e.target.value)}
             />
 
             <label className={styles.label}>작성자</label>

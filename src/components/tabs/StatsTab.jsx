@@ -1,5 +1,5 @@
 import { getMonthKey, formatAmount } from '../../utils/formatters'
-import { CATEGORIES } from '../../utils/categories'
+import { CATEGORIES, WRITERS } from '../../utils/categories'
 import cardStyles from '../cards/cards.module.css'
 import styles from './StatsTab.module.css'
 
@@ -13,18 +13,17 @@ export default function StatsTab({ records }) {
     amount: thisMonth.filter(r => r.catName === c.key).reduce((s, r) => s + r.amount, 0),
   })).filter(c => c.amount > 0).sort((a, b) => b.amount - a.amount)
 
-  const monthlyData = Array.from({ length: 5 }, (_, i) => {
-    const d = new Date()
-    d.setMonth(d.getMonth() - (4 - i))
-    const key = getMonthKey(d)
+  const activeMonths = [...new Set(records.filter(r => r.type === 'expense').map(r => r.date.slice(0, 7)))].sort()
+  const monthlyData = activeMonths.map(key => {
     const amt = records.filter(r => r.date.startsWith(key) && r.type === 'expense').reduce((s, r) => s + r.amount, 0)
-    return { key, label: `${d.getMonth() + 1}월`, amount: amt }
+    const month = Number(key.slice(5))
+    return { key, label: `${month}월`, amount: amt }
   })
   const maxMonthly = Math.max(...monthlyData.map(m => m.amount), 1)
 
   const writerData = [
-    { key: '🐰', label: '🐰 나', amount: thisMonth.filter(r => r.writer === '🐰').reduce((s, r) => s + r.amount, 0) },
-    { key: '🐻', label: '🐻 상대', amount: thisMonth.filter(r => r.writer === '🐻').reduce((s, r) => s + r.amount, 0) },
+    { key: WRITERS[0].key, label: `${WRITERS[0].key} ${WRITERS[0].label}`, amount: thisMonth.filter(r => r.writer === WRITERS[0].key).reduce((s, r) => s + r.amount, 0) },
+    { key: WRITERS[1].key, label: `${WRITERS[1].key} ${WRITERS[1].label}`, amount: thisMonth.filter(r => r.writer === WRITERS[1].key).reduce((s, r) => s + r.amount, 0) },
   ]
   const maxWriter = Math.max(...writerData.map(w => w.amount), 1)
 
@@ -103,7 +102,7 @@ export default function StatsTab({ records }) {
         </div>
         {writerData.map(w => (
           <div key={w.key} className={styles.barRow}>
-            <span className={styles.barLabel}>{w.label}</span>
+            <span className={styles.barLabelWide}>{w.label}</span>
             <div className={styles.barBg}>
               <div className={`${styles.barFill} ${w.key === '🐰' ? styles.barPink : styles.barMint}`} style={{ width: `${(w.amount / maxWriter) * 100}%` }} />
             </div>

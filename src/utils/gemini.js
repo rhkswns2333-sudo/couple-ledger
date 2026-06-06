@@ -23,7 +23,7 @@ export async function parseWithGemini(text, apiKey, today = getTodayString()) {
   const prompt = buildGeminiPrompt(text, today)
 
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -35,7 +35,13 @@ export async function parseWithGemini(text, apiKey, today = getTodayString()) {
   )
 
   const data = await res.json()
-  if (!res.ok) throw new Error(data.error?.message || 'Gemini API 오류')
+  if (!res.ok) {
+    const msg = data.error?.message || ''
+    const status = data.error?.status || ''
+    if (res.status === 401 || status === 'UNAUTHENTICATED' || msg.includes('API_KEY_INVALID')) throw new Error('API 키가 유효하지 않아요')
+    if (res.status === 429 || status === 'RESOURCE_EXHAUSTED') throw new Error('할당량을 초과했어요. 잠시 후 다시 시도해주세요')
+    throw new Error(`오류 ${res.status}: ${msg || status || '알 수 없는 오류'}`)
+  }
 
   const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || ''
   const match = raw.match(/\{[\s\S]*\}/)

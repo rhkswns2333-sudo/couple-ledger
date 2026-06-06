@@ -16,6 +16,6 @@ export function getCategoryByKey(key) {
 }
 
 export const WRITERS = [
-  { key: '🐰', label: '나' },
-  { key: '🐻', label: '상대' },
+  { key: '🐰', label: '관돌이' },
+  { key: '🐻', label: '딩듀대장' },
 ]

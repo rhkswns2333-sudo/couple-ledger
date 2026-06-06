@@ -23,6 +23,10 @@ export default function CalendarTab({ records }) {
     return records.filter(r => r.date === dateStr(d) && r.type === 'expense').reduce((s, r) => s + r.amount, 0)
   }
 
+  function dayIncome(d) {
+    return records.filter(r => r.date === dateStr(d) && r.type === 'income').reduce((s, r) => s + r.amount, 0)
+  }
+
   function prevMonth() {
     if (month === 0) { setYear(y => y - 1); setMonth(11) }
     else setMonth(m => m - 1)
@@ -53,6 +57,7 @@ export default function CalendarTab({ records }) {
           {Array.from({ length: daysInMonth }, (_, i) => {
             const d = i + 1
             const expense = dayExpense(d)
+            const income = dayIncome(d)
             const isToday = d === today.getDate() && month === today.getMonth() && year === today.getFullYear()
             const isSelected = d === selected
             return (
@@ -62,7 +67,8 @@ export default function CalendarTab({ records }) {
                 onClick={() => setSelected(d === selected ? null : d)}
               >
                 <span>{d}</span>
-                {expense > 0 && <span className={styles.expense}>{Math.round(expense / 10000)}만</span>}
+                {income > 0 && <span className={styles.income}>{income >= 10000 ? `+${Math.round(income / 10000)}만` : `+${income}`}</span>}
+                {expense > 0 && <span className={styles.expense}>{expense >= 10000 ? `-${Math.round(expense / 10000)}만` : `-${expense}`}</span>}
               </button>
             )
           })}
