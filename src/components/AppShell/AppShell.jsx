@@ -56,7 +56,6 @@ export default function AppShell({ onLock }) {
           <p className={styles.month}>{monthLabel}</p>
         </div>
         <span className={styles.deco}>🎀</span>
-        <button className={styles.lockBtn} onClick={onLock} title="잠금">🔒</button>
       </header>
 
       <nav className={styles.tabBar}>
