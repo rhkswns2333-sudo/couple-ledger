@@ -52,7 +52,7 @@ export default function AppShell({ onLock }) {
     <div className={styles.shell}>
       <header className={styles.header}>
         <div>
-          <h1 className={styles.title}>우리 가계부 💕</h1>
+          <h1 className={styles.title}>부자 되는 길 💕</h1>
           <p className={styles.month}>{monthLabel}</p>
         </div>
         <span className={styles.deco}>🎀</span>
